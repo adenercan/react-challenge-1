@@ -43,9 +43,6 @@ function Start({ onStart }){
                         <div className={`w-10 h-10 ${subject.bgColor} rounded-md flex justify-center items-center flex-row p-1`}>
                             <img className="" src={subject.icon} alt="" />
                         </div>{subject.name}
-                        <span className="font-bold text-lg text-gray-700 group-hover:text-purple-600">
-                            {subject.name}
-                        </span>
                     </button>   
                 ))}                
             </div>

@@ -1,7 +1,9 @@
-function Start(){
-    
+
+function Start({ onStart }){
+
+
     return (
-        <div className="bg-">
+        <div className="bg-[#F4F6FA]">
             <div>
                 {/* theme toggle gelecek */}
             </div>
@@ -14,20 +16,20 @@ function Start(){
             </div>
 
             {/* buttonlar */}
-            <div className="md:flex justify-center items-center flex-col gap-3 p-6">
-                <button className="flex  items-center w-80 p-3 bg-white rounded-xl gap-4">
+            <div className="flex justify-center items-center flex-col p-6 gap-3" >
+                <button className="flex  items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("HTML")}>
                     <div className="w-10 h-10 bg-orange-100 rounded-md flex justify-center items-center flex-row p-1 ">
                         <img className="" src="src/assets/imgs/html-icon.svg" alt="" />
                     </div>HTML</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4">
+                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("CSS")}>
                     <div className="w-10 h-10 bg-green-100 rounded-md flex justify-center items-center flex-row p-1">
                         <img src="src/assets/imgs/css-icon.svg" alt="" />
                     </div>CSS</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4">
+                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("JavaScript")}>
                     <div className="w-10 h-10 bg-blue-100 rounded-md flex justify-center items-center flex-row p-1">
                         <img src="src/assets/imgs/js-icon.svg" alt="" />
                     </div>JavaScript</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4">
+                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("Accessibility")}>
                     <div className="w-10 h-10 bg-purple-100 rounded-md flex justify-center items-center flex-row p-1">
                         <img src="src/assets/imgs/accessibility-icon.svg" alt="" />
                     </div>Accessibility</button>

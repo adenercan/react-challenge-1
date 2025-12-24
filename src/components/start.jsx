@@ -1,6 +1,27 @@
 
 function Start({ onStart }){
-
+    const subjects = [
+        { 
+            name: "HTML", 
+            icon: "src/assets/imgs/html-icon.svg",
+            bgColor: "bg-orange-100" 
+        },
+        { 
+            name: "CSS", 
+            icon: "src/assets/imgs/css-icon.svg", 
+            bgColor: "bg-green-100" 
+        },
+        { 
+            name: "JavaScript", 
+            icon: "src/assets/imgs/js-icon.svg", 
+            bgColor: "bg-blue-100" 
+        },
+        { 
+            name: "Accessibility", 
+            icon: "src/assets/imgs/accessibility-icon.svg", 
+            bgColor: "bg-purple-100" 
+        },
+    ];
 
     return (
         <div className="bg-[#F4F6FA]">
@@ -17,22 +38,16 @@ function Start({ onStart }){
 
             {/* buttonlar */}
             <div className="flex justify-center items-center flex-col p-6 gap-3" >
-                <button className="flex  items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("HTML")}>
-                    <div className="w-10 h-10 bg-orange-100 rounded-md flex justify-center items-center flex-row p-1 ">
-                        <img className="" src="src/assets/imgs/html-icon.svg" alt="" />
-                    </div>HTML</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("CSS")}>
-                    <div className="w-10 h-10 bg-green-100 rounded-md flex justify-center items-center flex-row p-1">
-                        <img src="src/assets/imgs/css-icon.svg" alt="" />
-                    </div>CSS</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("JavaScript")}>
-                    <div className="w-10 h-10 bg-blue-100 rounded-md flex justify-center items-center flex-row p-1">
-                        <img src="src/assets/imgs/js-icon.svg" alt="" />
-                    </div>JavaScript</button>
-                <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart("Accessibility")}>
-                    <div className="w-10 h-10 bg-purple-100 rounded-md flex justify-center items-center flex-row p-1">
-                        <img src="src/assets/imgs/accessibility-icon.svg" alt="" />
-                    </div>Accessibility</button>
+                {subjects.map((subject) => (
+                    <button className="flex items-center w-80 p-3 bg-white rounded-xl gap-4" onClick={() => onStart(subject.name)}>
+                        <div className={`w-10 h-10 ${subject.bgColor} rounded-md flex justify-center items-center flex-row p-1`}>
+                            <img className="" src={subject.icon} alt="" />
+                        </div>{subject.name}
+                        <span className="font-bold text-lg text-gray-700 group-hover:text-purple-600">
+                            {subject.name}
+                        </span>
+                    </button>   
+                ))}                
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ function Start(){
 
             {/* buttonlar */}
             <div className="md:flex justify-center items-center flex-col gap-3 p-6">
-                <button className="flex  items-center w-80 p-3 bg-white rounded-xl gap-4">
+                <button className="flex  items-center w-80 p-3 bg-white rounded-xl gap-4" onClik>
                     <div className="w-10 h-10 bg-orange-100 rounded-md flex justify-center items-center flex-row p-1 ">
                         <img className="" src="src/assets/imgs/html-icon.svg" alt="" />
                     </div>HTML</button>

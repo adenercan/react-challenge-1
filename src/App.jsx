@@ -1,9 +1,9 @@
-import questions from "./assets/questions.js";
+
 function App() {
   
   return (
     <>
-    
+    <h1>hello world</h1>
     </>
   )
 }

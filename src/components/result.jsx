@@ -27,6 +27,6 @@ function Result({ score, onRestart, totalQuestions = 10, category = "HTML", icon
     </div>
   );
 }
-
+// hello world
 export default Result;
 

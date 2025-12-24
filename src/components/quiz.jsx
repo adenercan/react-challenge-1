@@ -5,9 +5,9 @@ function Quiz() {
 
   const handleAnswer = (selectedOption, correctAnswer) => {
     if (selectedOption === correctAnswer) {
-      alert("Doğru Cevap! 🎉");
+      alert("Doğru Cevap! ");
     } else {
-      alert("Yanlış Cevap. ❌");
+      alert("Yanlış Cevap. ");
     }
   };
 

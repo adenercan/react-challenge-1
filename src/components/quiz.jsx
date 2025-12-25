@@ -2,20 +2,14 @@ import { useState } from 'react';
 import questions from '../assets/questions'; 
 
 function Quiz({ category, setScore, onFinish }) {
-  
   const filteredQuestions = questions.filter(q => q.category === category);
-
-  if (!filteredQuestions || filteredQuestions.length === 0) {
-    return <div className="p-10 text-center">Bu kategoriye ait soru bulunamadı.</div>;
-  }
-
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  const labels = ["A", "B", "C", "D"];
   const currentQuestion = filteredQuestions[currentQuestionIndex];
+  const labels = ["A", "B", "C", "D"];
 
   const handleSelectOption = (option) => {
     if (isSubmitted) return;
@@ -28,9 +22,7 @@ function Quiz({ category, setScore, onFinish }) {
       setError(true);
       return;
     }
-
     setIsSubmitted(true);
-
     if (selectedOption === currentQuestion.answer) {
       setScore((prev) => prev + 1);
     }
@@ -46,38 +38,14 @@ function Quiz({ category, setScore, onFinish }) {
     }
   };
 
-  const getOptionClass = (option) => {
-    let baseClass = "flex items-center w-full p-4 bg-white rounded-xl gap-4 border-2 cursor-pointer mb-3 shadow-sm group transition-all ";
-
-    if (selectedOption !== option && !isSubmitted) {
-        return baseClass + "border-transparent hover:border-purple-300";
-    }
-
-    if (!isSubmitted && selectedOption === option) {
-        return baseClass + "border-purple-500 bg-purple-50";
-    }
-
-    if (isSubmitted) {
-      if (option === currentQuestion.answer) {
-        return baseClass + "border-green-500 bg-green-50 text-green-700";
-      }
-      if (selectedOption === option && option !== currentQuestion.answer) {
-        return baseClass + "border-red-500 bg-red-50 text-red-700";
-      }
-    }
-
-    return baseClass + "border-transparent";
-  };
-
   return (
     <div className="w-full max-w-2xl mx-auto p-6">
       <div className="mb-8">
-        <p className="italic text-gray-500 text-sm mb-2">
+        <p className="italic text-gray-500 dark:text-[#ABC1E1] text-sm mb-2">
             Question {currentQuestionIndex + 1} of {filteredQuestions.length}
         </p>
-        <h2 className="text-2xl font-bold">{currentQuestion.text}</h2>
-        
-        <div className='w-full bg-gray-200 rounded-full h-2.5 mt-6'>
+        <h2 className="text-2xl font-bold text-[#313E51] dark:text-white">{currentQuestion.text}</h2>
+        <div className='w-full bg-white dark:bg-[#3B4D66] rounded-full h-2.5 mt-6 shadow-sm'>
             <div 
                 className='bg-purple-600 h-2.5 rounded-full transition-all duration-300' 
                 style={{ width: `${((currentQuestionIndex + 1) / filteredQuestions.length) * 100}%` }}
@@ -90,48 +58,29 @@ function Quiz({ category, setScore, onFinish }) {
           <button 
             key={index} 
             onClick={() => handleSelectOption(option)} 
-            className={getOptionClass(option)}
+            className={`flex items-center w-full p-4 bg-white dark:bg-[#3B4D66] rounded-xl gap-4 border-2 transition-all shadow-sm
+              ${selectedOption === option ? 'border-purple-600' : 'border-transparent'}
+              ${isSubmitted && option === currentQuestion.answer ? 'border-green-500' : ''}
+              ${isSubmitted && selectedOption === option && option !== currentQuestion.answer ? 'border-red-500' : ''}
+            `}
           >
-            <div className={`flex items-center justify-center w-10 h-10 rounded-md font-bold transition-colors
-                ${selectedOption === option ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-purple-100 group-hover:text-purple-600'}
+            <div className={`w-10 h-10 rounded-md font-bold flex items-center justify-center 
+              ${selectedOption === option ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600'}
             `}>
                {labels[index]}
             </div>
-            
-            <span className="flex-1 text-left font-semibold">{option}</span>
-
-            {isSubmitted && option === currentQuestion.answer && (
-                <span className="text-green-500 text-xl">✔</span>
-            )}
-
-            {isSubmitted && selectedOption === option && option !== currentQuestion.answer && (
-                <span className="text-red-500 text-xl">✖</span>
-            )}
+            <span className="flex-1 text-left font-bold text-[#313E51] dark:text-white">{option}</span>
           </button>
         ))}
       </div>
 
-      {error && (
-        <p className="flex items-center gap-2 text-red-500 mt-3 justify-center">
-            <span className='text-xl'>!</span> Lütfen bir seçenek seçin.
-        </p>
-      )}
-
-      {!isSubmitted ? (
-        <button 
-            onClick={handleSubmit} 
-            className="w-full mt-6 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition-colors"
-        >
-            Submit Answer
-        </button>
-      ) : (
-        <button 
-            onClick={handleNextQuestion} 
-            className='w-full mt-6 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition-colors'
-        >
-          {currentQuestionIndex === filteredQuestions.length - 1 ? "Show Results" : "Next Question"}
-        </button>
-      )}
+      <button 
+          onClick={isSubmitted ? handleNextQuestion : handleSubmit} 
+          className="w-full mt-6 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition-all shadow-lg"
+      >
+          {isSubmitted ? (currentQuestionIndex === filteredQuestions.length - 1 ? "Show Results" : "Next Question") : "Submit Answer"}
+      </button>
+      {error && <p className="text-red-500 text-center mt-2">Please select an answer</p>}
     </div>
   );
 }

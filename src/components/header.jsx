@@ -24,14 +24,12 @@ function Header({ category }) {
       </div>
       
       <div className="flex items-center gap-3">
-        <span className="text-xl">☀️</span>
         <button 
           onClick={toggleTheme}
           className="w-12 h-6 bg-purple-600 rounded-full relative p-1 transition-all"
         >
           <div className={`w-4 h-4 bg-white rounded-full transition-all duration-300 ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`} />
         </button>
-        <span className="text-xl">🌙</span>
       </div>
     </header>
   );

@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+  --color-dark-navy: #313E51;
+  --color-navy: #3B4D66;
+  --color-grey-navy: #626C7F;
+  --color-light-grey: #F4F6FA;
+  --color-light-bluish: #ABC1E1;
+}
+
+/* Dark Mode Global Styles */
+.dark body {
+  background-color: var(--color-dark-navy);
+  color: white;
+}
+
+.dark .bg-white {
+  background-color: var(--color-navy) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+.dark .text-gray-500, .dark .text-[#626C7F] {
+  color: var(--color-light-bluish) !important;
+}
+
+.dark h1, .dark h2, .dark span {
+  color: white !important;
+}
